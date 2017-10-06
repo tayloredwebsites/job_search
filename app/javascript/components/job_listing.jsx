@@ -6,8 +6,10 @@ class JobListing extends React.Component {
 
   render() {
 
+    console.log('render - this.props: '+JSON.stringify(this.props));
     let jobsState = this.props.jobs;
     console.log('render - jobs: '+JSON.stringify(jobsState));
+
     let jobsList = jobsState.map((job) => {
       return (
         <tr className='row' key={job.id}>

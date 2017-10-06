@@ -13,17 +13,27 @@ class Body extends React.Component {
     this.state = {
       jobs: []
     };
+    this.handleAddJobClick = this.handleAddJobClick.bind(this)
+  }
+
+  handleAddJobClick(job) {
+    console.log('handleAddJobClick job: '+JSON.stringify(job))
+    console.log('handleAddJobClick this.state: '+JSON.stringify(this.state))
+    let newState = this.state.jobs.concat(job);
+    console.log('handleAddJobClick updated state: '+JSON.stringify(newState))
+    this.setState({ jobs: newState })
+    console.log('handleAddJobClick state set: '+JSON.stringify(newState))
   }
 
   componentDidMount() {
     console.log('Body Component was mounted');
     axios.get('/api/v01/jobs.json')
-      .then(response => {
-        console.log('componentDidMount response returned' + response.data)
+      .then((response) => {
+        console.log('componentDidMount response returned' + JSON.stringify(response.data))
         this.setState({ jobs: response.data });
-        console.log('setState to: ' + JSON.stringify(this.state.jobs))
+        console.log('setState to: ' + JSON.stringify(response.data))
       })
-      .catch(error => {
+      .catch((error) => {
         console.log('componentDidMount error response returned')
         console.error(error);
       });
@@ -32,7 +42,7 @@ class Body extends React.Component {
   render() {
     return (
       <div>
-        <NewJob />
+        <NewJob handleAddJobClick={this.handleAddJobClick} />
         <JobListing  jobs={this.state.jobs} />
       </div>
     )
