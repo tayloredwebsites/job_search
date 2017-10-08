@@ -4,8 +4,12 @@ import React from 'react';
 
 class JobListing extends React.Component {
 
-  render() {
+  handleDeleteClick(job) {
+    console.log('Clicked delete');
+    this.props.handleDeleteClick(job)
+  }
 
+  render() {
     console.log('render - this.props: '+JSON.stringify(this.props));
     let jobsState = this.props.jobs;
     console.log('render - jobs: '+JSON.stringify(jobsState));
@@ -15,6 +19,9 @@ class JobListing extends React.Component {
         <tr className='row' key={job.id}>
           <td className='recruiter'>{job.recruiter}</td>
           <td className='company'>{job.company}</td>
+          <td>
+            <button className='deleteButton' onClick={this.handleDeleteClick.bind(this, job)}>Delete</button>
+          </td>
         </tr>
       )
     });

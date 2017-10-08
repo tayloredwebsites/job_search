@@ -14,6 +14,7 @@ class Body extends React.Component {
       jobs: []
     };
     this.handleAddJobClick = this.handleAddJobClick.bind(this)
+    this.handleDeleteJobClick = this.handleDeleteJobClick.bind(this)
   }
 
   handleAddJobClick(job) {
@@ -23,6 +24,30 @@ class Body extends React.Component {
     console.log('handleAddJobClick updated state: '+JSON.stringify(newState))
     this.setState({ jobs: newState })
     console.log('handleAddJobClick state set: '+JSON.stringify(newState))
+  }
+
+  handleDeleteJobClick(job) {
+    console.log('body.jsx handleDeleteJobClick job: '+JSON.stringify(job));
+    console.log('body.jsx handleDeleteJobClick this.state: '+JSON.stringify(this.state));
+    axios({
+      method: 'DELETE',
+      url: '/api/v01/jobs/'+job.id+'.json',
+      headers: {'Content-Type': 'application/json'}
+    })
+    .then((response) => {
+      console.log('Body handleDeleteJobClick response returned')
+      console.log(' - ' + JSON.stringify(response.data))
+      let newState = this.state.jobs.filter((jobFilt)=> {
+        return job.id != jobFilt.id;
+      });
+      console.log('handleDeleteJobClick updated state: '+JSON.stringify(newState))
+      this.setState({ jobs: newState })
+      console.log('handleDeleteJobClick state set: '+JSON.stringify(newState))
+    })
+    .catch((error) => {
+      console.log('handleDeleteJobClick - error response returned')
+      console.error(error);
+    });
   }
 
   componentDidMount() {
@@ -43,7 +68,7 @@ class Body extends React.Component {
     return (
       <div>
         <NewJob handleAddJobClick={this.handleAddJobClick} />
-        <JobListing  jobs={this.state.jobs} />
+        <JobListing jobs={this.state.jobs} handleDeleteClick={this.handleDeleteJobClick} />
       </div>
     )
   }
