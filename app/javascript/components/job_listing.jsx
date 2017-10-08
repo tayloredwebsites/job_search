@@ -28,8 +28,15 @@ class JobListing extends React.Component {
 
     return (
       <div>
-        <h2>All Jobs Sought</h2>
-        <table id='jobs-table'>
+        <h2>Jobs Listing</h2>
+        <table id='jobs-table' style={{tableLayout: 'fixed'}}>
+          <thead>
+            <tr>
+              <th className='recruiterHead'>Recruiter</th>
+              <th className='companyHead'>Company</th>
+              <th className='actionsHead'>Actions</th>
+            </tr>
+          </thead>
           <tbody>
             {jobsList}
           </tbody>

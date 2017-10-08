@@ -6,7 +6,7 @@ class Header extends React.Component {
   render() {
     return (
       <div>
-        <h1>Job Search History</h1>
+        <h1>Job Search Logger</h1>
       </div>
     )
   }

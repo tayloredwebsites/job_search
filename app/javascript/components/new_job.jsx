@@ -38,7 +38,7 @@ class NewJob extends React.Component {
   render() {
     return (
       <div>
-        <h2>New Job</h2>
+        <h2>Add a New Job</h2>
         <input ref='recruiter' placeholder='Enter the Recruiter' />
         <input ref='company' placeholder='Enter Company Name' />
         <button onClick={this.handleClick}>Submit</button>
