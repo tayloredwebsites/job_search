@@ -2,27 +2,44 @@
 
 import React from 'react';
 
+import Job from '../components/job'
+
 class JobListing extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputRecruiter: '',
+      inputCompany: '',
+    }
+    this.handleDeleteClick = this.handleDeleteClick.bind(this)
+    // this.handleEdit = this.handleEdit.bind(this)
+  }
 
   handleDeleteClick(job) {
     console.log('Clicked delete');
-    this.props.handleDeleteClick(job)
+    this.props.handleDeleteClick(job);
+  }
+
+  handleEdit(e) {
+    console.log('Clicked edit');
+    console.log('this: '+JSON.stringify(this.state));
+    // this.props.handleEdit();
   }
 
   render() {
-    console.log('render - this.props: '+JSON.stringify(this.props));
+    // console.log('render - this.props: '+JSON.stringify(this.props));
     let jobsState = this.props.jobs;
-    console.log('render - jobs: '+JSON.stringify(jobsState));
+    // console.log('render - jobs: '+JSON.stringify(jobsState));
 
     let jobsList = jobsState.map((job) => {
       return (
-        <tr className='row' key={job.id}>
-          <td className='recruiter'>{job.recruiter}</td>
-          <td className='company'>{job.company}</td>
-          <td>
-            <button className='deleteButton' onClick={this.handleDeleteClick.bind(this, job)}>Delete</button>
-          </td>
-        </tr>
+        <Job
+          key={job.id}
+          job={job}
+          handleDeleteClick = {this.handleDeleteClick.bind(this, job)}
+          // handleEdit = {this.handleEdit}
+        />
       )
     });
 
