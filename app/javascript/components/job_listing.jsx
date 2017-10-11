@@ -15,14 +15,14 @@ class JobListing extends React.Component {
 
   // update Jobs state upstream after delete
   handleDeleteClick(job) {
-    console.log('Clicked delete');
+    // console.log('Clicked delete');
     this.props.handleDeleteClick(job);
   }
 
   // update Jobs state upstream after update
   handleEdit(job) {
-    console.log('Clicked edit');
-    console.log('job: '+JSON.stringify(job));
+    // console.log('Clicked edit');
+    // console.log('job: '+JSON.stringify(job));
     this.props.handleEdit(job);
   }
 

@@ -22,22 +22,22 @@ class Body extends React.Component {
 
   // Added job is added to All Jobs State
   handleAddJobClick(job) {
-    console.log('handleAddJobClick job: '+JSON.stringify(job))
+    // console.log('handleAddJobClick job: '+JSON.stringify(job))
     let newState = this.state.jobs.concat(job);
     this.setState({ jobs: newState })
   }
 
   // Deleted job is removed from All Jobs State upon success
   handleDeleteJobClick(job) {
-    console.log('body.jsx handleDeleteJobClick job: '+JSON.stringify(job));
+    // console.log('body.jsx handleDeleteJobClick job: '+JSON.stringify(job));
     axios({
       method: 'DELETE',
       url: '/api/v01/jobs/'+job.id+'.json',
       headers: {'Content-Type': 'application/json'}
     })
     .then((response) => {
-      console.log('Body handleDeleteJobClick response returned')
-      console.log(' - ' + JSON.stringify(response.data))
+      // console.log('Body handleDeleteJobClick response returned')
+      // console.log(' - ' + JSON.stringify(response.data))
       let newState = this.state.jobs.filter((jobFilt)=> {
         return job.id != jobFilt.id;
       });
@@ -53,7 +53,7 @@ class Body extends React.Component {
   // - first removed old job All Jobs State
   // - new job is concatenated
   handleEdit(job) {
-    console.log('handleEdit job: '+JSON.stringify(job))
+    // console.log('handleEdit job: '+JSON.stringify(job))
     let newState = this.state.jobs.filter((jobFilt)=> {
       return job.id != jobFilt.id;
     }).concat(job);
@@ -63,7 +63,7 @@ class Body extends React.Component {
 
   // List jobs when body component is mounted.
   componentDidMount() {
-    console.log('Body Component was mounted');
+    // console.log('Body Component was mounted');
     axios.get('/api/v01/jobs.json')
       .then((response) => {
         this.setState({ jobs: response.data });

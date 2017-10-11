@@ -25,13 +25,13 @@ class NewJob extends React.Component {
 
   // handle submit new job click event
   handleClick() {
-    console.log('this.state: ' + JSON.stringify(this.state))
+    // console.log('this.state: ' + JSON.stringify(this.state))
 
     // create the new job, update state upstream, and clear fields
     axios.post('/api/v01/jobs.json', this.state)
       .then((response) => {
-        console.log('NewJob handleClick response returned');
-        console.log(' - ' + JSON.stringify(response.data));
+        // console.log('NewJob handleClick response returned');
+        // console.log(' - ' + JSON.stringify(response.data));
         this.props.handleAddJobClick(response.data);
         this.clearFields();
       })
@@ -43,17 +43,17 @@ class NewJob extends React.Component {
 
   // update state of recruiter from input field value
   setRecruiter(e) {
-    console.log('new_job.jsx setRecruiter e: '+e)
+    // console.log('new_job.jsx setRecruiter e: '+e)
     let newRecruiter = e.target.value;
-    console.log('new_job.jsx newRecruiter: '+newRecruiter)
+    // console.log('new_job.jsx newRecruiter: '+newRecruiter)
     this.setState({recruiter: newRecruiter});
   }
 
   // update state of company from input field value
   setCompany(e) {
-    console.log('new_job.jsx setCompany e: '+e)
+    // console.log('new_job.jsx setCompany e: '+e)
     let newCompany = e.target.value;
-    console.log('new_job.jsx newCompany: '+newCompany)
+    // console.log('new_job.jsx newCompany: '+newCompany)
     this.setState({company: newCompany});
   }
 

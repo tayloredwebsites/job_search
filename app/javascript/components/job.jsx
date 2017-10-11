@@ -8,6 +8,7 @@ class Job extends React.Component {
   constructor(props) {
     super(props);
     // state includes editing mode and edited job fields
+    // state is kept here, not appropriate at a higher level
     this.state = {
       editing: false,
       job: {
@@ -24,8 +25,8 @@ class Job extends React.Component {
 
   // pass delete event upstream to update state
   handleDelete() {
-    console.log('job.jsx handleDelete: ');
-    console.log('state: '+JSON.stringify(this.state));
+    // console.log('job.jsx handleDelete: ');
+    // console.log('state: '+JSON.stringify(this.state));
     this.props.handleDeleteClick(this.state.job);
   }
 
@@ -35,14 +36,14 @@ class Job extends React.Component {
   // - save changes to server
   // - and pass event upstream to update state
   handleEdit() {
-    console.log('job.jsx handleEdit: ');
+    // console.log('job.jsx handleEdit: ');
     this.setState({editing: !this.state.editing})
-    console.log('job.jsx handleEdit state: '+JSON.stringify(this.state));
+    // console.log('job.jsx handleEdit state: '+JSON.stringify(this.state));
     if(this.state.editing) {
       axios.put('/api/v01/jobs/'+this.state.job.id+'.json', this.state.job)
         .then((response) => {
-          console.log('Job handleEdit response returned');
-          console.log(' - ' + JSON.stringify(response.data));
+          // console.log('Job handleEdit response returned');
+          // console.log(' - ' + JSON.stringify(response.data));
           this.props.handleEdit(response.data);
         })
         .catch((error) => {
@@ -54,26 +55,24 @@ class Job extends React.Component {
 
   // update state of recruiter from input field value
   setRecruiter(e) {
-    console.log('new_job.jsx setRecruiter e: '+e)
+    // console.log('new_job.jsx setRecruiter e: '+e)
     let newRecruiter = e.target.value;
-    console.log('new_job.jsx newRecruiter: '+newRecruiter)
+    // console.log('new_job.jsx newRecruiter: '+newRecruiter)
     var newJob = {...this.state.job};
     newJob.recruiter = newRecruiter;
     this.setState({job: newJob});
-    console.log('job.jsx setRecruiter state: '+JSON.stringify(this.state));
-    console.log('job.jsx setRecruiter job: '+JSON.stringify(this.state.job));
+    // console.log('job.jsx setRecruiter state: '+JSON.stringify(this.state));
   }
 
   // update state of company from input field value
   setCompany(e) {
-    console.log('new_job.jsx setCompany e: '+e)
+    // console.log('new_job.jsx setCompany e: '+e)
     let newCompany = e.target.value;
-    console.log('new_job.jsx newCompany: '+newCompany)
+    // console.log('new_job.jsx newCompany: '+newCompany)
     var newJob = {...this.state.job};
     newJob.company = newCompany;
     this.setState({job: newJob});
-    console.log('job.jsx setCompany state: '+JSON.stringify(this.state));
-    console.log('job.jsx setCompany job: '+JSON.stringify(this.state.job));
+    // console.log('job.jsx setCompany state: '+JSON.stringify(this.state));
   }
 
   render() {
