@@ -7,9 +7,10 @@
 # Ignore bundler config.
 /.bundle
 
-# ignore config files with data to be kept secured
+# ignore config files with data to be kept private
 /config/database.yml
 /config/secrets.yml
+/db/seeds.rb
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
