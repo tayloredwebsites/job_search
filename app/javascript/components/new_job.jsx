@@ -3,9 +3,11 @@
 import React from 'react'
 import axios from 'axios';
 
+// component with input fields to add a new Job
 class NewJob extends React.Component {
   constructor(props) {
     super(props);
+    // source for state of job input fields
     this.state = {
       recruiter: '',
       company: '',
@@ -15,13 +17,17 @@ class NewJob extends React.Component {
     this.setCompany = this.setCompany.bind(this)
   }
 
+  // after successful create, clear the input fields state
+  // and hence the input fields
   clearFields() {
     this.setState({recruiter: '', company: ''})
   }
 
+  // handle submit new job click event
   handleClick() {
     console.log('this.state: ' + JSON.stringify(this.state))
 
+    // create the new job, update state upstream, and clear fields
     axios.post('/api/v01/jobs.json', this.state)
       .then((response) => {
         console.log('NewJob handleClick response returned');
@@ -35,6 +41,7 @@ class NewJob extends React.Component {
       });
   }
 
+  // update state of recruiter from input field value
   setRecruiter(e) {
     console.log('new_job.jsx setRecruiter e: '+e)
     let newRecruiter = e.target.value;
@@ -42,6 +49,7 @@ class NewJob extends React.Component {
     this.setState({recruiter: newRecruiter});
   }
 
+  // update state of company from input field value
   setCompany(e) {
     console.log('new_job.jsx setCompany e: '+e)
     let newCompany = e.target.value;
@@ -49,6 +57,7 @@ class NewJob extends React.Component {
     this.setState({company: newCompany});
   }
 
+  // render the new job fields
   render() {
     return (
       <div>

@@ -4,23 +4,22 @@ import React from 'react';
 
 import Job from '../components/job'
 
+// Listing of Job components
 class JobListing extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      inputRecruiter: '',
-      inputCompany: '',
-    }
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
     this.handleEdit = this.handleEdit.bind(this)
   }
 
+  // update Jobs state upstream after delete
   handleDeleteClick(job) {
     console.log('Clicked delete');
     this.props.handleDeleteClick(job);
   }
 
+  // update Jobs state upstream after update
   handleEdit(job) {
     console.log('Clicked edit');
     console.log('job: '+JSON.stringify(job));
@@ -28,11 +27,9 @@ class JobListing extends React.Component {
   }
 
   render() {
-    // console.log('render - this.props: '+JSON.stringify(this.props));
-    let jobsState = this.props.jobs;
-    // console.log('render - jobs: '+JSON.stringify(jobsState));
 
-    let jobsList = jobsState.map((job) => {
+    // list of individual jobs
+    let jobsList = this.props.jobs.map((job) => {
       return (
         <Job
           key={job.id}
@@ -43,6 +40,7 @@ class JobListing extends React.Component {
       )
     });
 
+    // render listing of Jobs
     return (
       <div>
         <h2>Jobs Listing</h2>
