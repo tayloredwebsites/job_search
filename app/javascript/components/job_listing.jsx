@@ -13,7 +13,7 @@ class JobListing extends React.Component {
       inputCompany: '',
     }
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
-    // this.handleEdit = this.handleEdit.bind(this)
+    this.handleEdit = this.handleEdit.bind(this)
   }
 
   handleDeleteClick(job) {
@@ -21,10 +21,10 @@ class JobListing extends React.Component {
     this.props.handleDeleteClick(job);
   }
 
-  handleEdit(e) {
+  handleEdit(job) {
     console.log('Clicked edit');
-    console.log('this: '+JSON.stringify(this.state));
-    // this.props.handleEdit();
+    console.log('job: '+JSON.stringify(job));
+    this.props.handleEdit(job);
   }
 
   render() {
@@ -38,7 +38,7 @@ class JobListing extends React.Component {
           key={job.id}
           job={job}
           handleDeleteClick = {this.handleDeleteClick.bind(this, job)}
-          // handleEdit = {this.handleEdit}
+          handleEdit = {this.handleEdit}
         />
       )
     });

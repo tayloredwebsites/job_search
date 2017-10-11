@@ -15,6 +15,7 @@ class Body extends React.Component {
     };
     this.handleAddJobClick = this.handleAddJobClick.bind(this)
     this.handleDeleteJobClick = this.handleDeleteJobClick.bind(this)
+    this.handleEdit = this.handleEdit.bind(this)
   }
 
   handleAddJobClick(job) {
@@ -50,6 +51,18 @@ class Body extends React.Component {
     });
   }
 
+  handleEdit(job) {
+    console.log('handleEdit job: '+JSON.stringify(job))
+    // console.log('handleEdit this.state: '+JSON.stringify(this.state))
+    let newState = this.state.jobs.filter((jobFilt)=> {
+      return job.id != jobFilt.id;
+    }).concat(job);
+    // console.log('handleEdit updated state: '+JSON.stringify(newState))
+    this.setState({ jobs: newState })
+    // console.log('handleEdit state set: '+JSON.stringify(newState))
+  }
+
+
   componentDidMount() {
     console.log('Body Component was mounted');
     axios.get('/api/v01/jobs.json')
@@ -68,7 +81,10 @@ class Body extends React.Component {
     return (
       <div>
         <NewJob handleAddJobClick={this.handleAddJobClick} />
-        <JobListing jobs={this.state.jobs} handleDeleteClick={this.handleDeleteJobClick} />
+        <JobListing
+          jobs={this.state.jobs}
+          handleDeleteClick={this.handleDeleteJobClick}
+          handleEdit={this.handleEdit} />
       </div>
     )
   }
