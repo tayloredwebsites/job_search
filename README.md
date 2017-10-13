@@ -1,5 +1,8 @@
 # 'List Jobs Sought' CRUD example website
 
+## This code is running on heroku at:
+<https://pure-coast-59848.herokuapp.com/>
+
 ## Why I wrote this site:
 
 * as a realistic example to teach myself react.js
@@ -63,17 +66,17 @@ Wnen I initially was developing this site in Rails 5, I started without includin
 ## Installation instructions for localhost:
 - note: $ is the command prompt.
 
-* clone this repo to local computer
-    * $ git clone git@github.com:tayloredwebsites/job_search.git
-    * $ cd job_search/
+* download this repo as zip file and create the repo on local machine
+    * $ https://github.com/tayloredwebsites/job_search/archive/master.zip
+    * unzip master.zip into your chosen directory
+    * $ cd job_search-master
 * Note: Requires a version of ruby that can handle Rails 5.1.4. (I am using 2.3.5p376 using rbenv)
     * $ ruby -v
 * Note: Requires PostgreSQL - for compatibility with Heroku deployment.
-* Install Postgres on Mac:
+* Install Postgres on Mac (with command line tools):
     * download postgres.app and move into Application directory.
-    * $ gem install pg -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/latest/bin/pg_config
-* Note: To set up postgres path for command line tools on Mac.
-* Edit ~/.bash_profile and add the following to the end:
+    * Note: To set up postgres path for command line tools on Mac.
+    * Edit ~/.bash_profile and add the following to the end:
     * export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 * Set up database in Postgres using command line:
     * create database job_search;
@@ -83,12 +86,14 @@ Wnen I initially was developing this site in Rails 5, I started without includin
     * grant all privileges on database job_search to job_search_ror;
     * \list (to confirm jobsearch has job_search_ror in access privileges).
 * rails setup:
+    * $ gem install pg -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/latest/bin/pg_config
     * $ bundle install
     * $ bin/rake db:migrate
-* Install webpack in this new repo:
+* Install webpack in this new repo (overwrite as needed):
     * $ rails webpacker:install
     * $ rails webpacker:install:react
-* Bring up rails on localhost:
+* Bring up site on localhost (in separate terminal windows):
+    * $ bin/webpack-dev-server
     * $ bin/rails server
 
 ## Deploy to Heroku:
@@ -96,6 +101,9 @@ Wnen I initially was developing this site in Rails 5, I started without includin
 * Note: Requires Heroku toolbelt see: https://devcenter.heroku.com/articles/heroku-cli
 * $ heroku create
 * $ git push heroku master
+* $ heroku run rake db:migrate
 * $ git remote -v (to confirm remote name)
 * Note: to visit site, use url of format:
     * https://{remote name here}.herokuapp.com/
+* to check Heroku logs:
+    * heroku logs --tail
