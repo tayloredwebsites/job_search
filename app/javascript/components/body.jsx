@@ -57,6 +57,8 @@ class Body extends React.Component {
   // Updated Job:
   // - first removed old job All Jobs State
   // - new job is concatenated
+  // todo - maintain order of jobs after edit.
+  // todo - allow sorting and filtering.
   handleEdit(job) {
     console.log('handleEdit job: '+JSON.stringify(job))
     let newState = this.state.jobs.filter((jobFilt)=> {
@@ -67,8 +69,9 @@ class Body extends React.Component {
 
   // List jobs when body component is mounted.
   componentDidMount() {
+    // debugging statements to demonstrate that configuration is synchronous instead of async.
     console.log('Body Component was mounted');
-    sleep(5000);
+    sleep(1000);
     console.log('awoke');
     axios.get('/api/v01/jobs.json')
       .then((response) => {
