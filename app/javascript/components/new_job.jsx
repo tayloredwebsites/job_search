@@ -63,14 +63,19 @@ class NewJob extends React.Component {
       <div>
         <h2>Add a New Job</h2>
         <input
+          name='newRecruiter'
           placeholder='Enter the Recruiter'
           value={this.state.recruiter}
           onChange={this.setRecruiter} />
         <input
+          name='newCompany'
           placeholder='Enter Company Name'
           value={this.state.company}
           onChange={this.setCompany} />
-        <button onClick={this.handleClick}>Submit</button>
+        <button
+          name='newSubmit'
+          onClick={this.handleClick}
+        >Submit</button>
       </div>
     )
   }

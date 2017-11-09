@@ -44,7 +44,11 @@ class Job extends React.Component {
         .then((response) => {
           // console.log('Job handleEdit response returned');
           // console.log(' - ' + JSON.stringify(response.data));
-          this.props.handleEdit(response.data);
+          // note: update does not return updated values.
+          // will assume updated if no error returned
+          // Thus will pass state data up, not the response data
+          // this.props.handleEdit(response.data);
+          this.props.handleEdit(this.state.job);
         })
         .catch((error) => {
           console.log('post new job json error response returned');
@@ -80,22 +84,25 @@ class Job extends React.Component {
     let thisJob = this.props.job;
     let inForm = this.state.editing;
     let recruiterTag = inForm ? (
-      <td className='recruiter'><input type='text' defaultValue={thisJob.recruiter} onChange={this.setRecruiter} /></td>
+      <td><input type='text' name='recruiter' defaultValue={thisJob.recruiter} onChange={this.setRecruiter} /></td>
     ) : (
       <td className='recruiter'>{thisJob.recruiter}</td>
     );
     let companyTag = inForm ? (
-      <td className='company'><input type='text' defaultValue={thisJob.company} onChange={this.setCompany} /></td>
+      <td><input type='text' name='company' defaultValue={thisJob.company} onChange={this.setCompany} /></td>
     ) : (
       <td className='company'>{thisJob.company}</td>
     );
     // display table row for job with delete and edit/save button
     return (
-      <tr className='row' key={thisJob.id}>
+      <tr className='row'
+        data-test-id={thisJob.id}
+        key={thisJob.id}
+      >
         {recruiterTag}
         {companyTag}
         <td>
-          <button className='deleteButton' onClick={this.handleDelete}>Delete</button>
+          <button onClick={this.handleDelete}>Delete</button>
           <button onClick={this.handleEdit}>{this.state.editing ? 'Save' : 'Edit'}</button>
         </td>
       </tr>
