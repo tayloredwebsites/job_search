@@ -1,10 +1,8 @@
 /* app/javascripts/components/_header.jsx */
 
 import React from 'react'
-import logo from '../images/logo.svg';
-import '../packs/main';
-// importing css from asset pipeline instead of from webpacker
-// import '../css/main.css';
+
+import logo from '../logo.svg';
 
 // Page Header
 class Header extends React.Component {

@@ -1,0 +1,41 @@
+.app {
+  text-align: center;
+}
+
+.logo {
+  animation: appLogoSpin infinite 20s linear;
+  height: 80px;
+}
+
+.appHeader {
+  display: grid;
+  grid-template-columns: 10% 90%;
+  grid-column-gap: 15px;
+  background-color: #222;
+  height: 80px;
+  padding: 10px;
+  color: white;
+}
+
+.appLogo {
+  height: 80px;
+  width: 120px;
+}
+
+.appTitle {
+  height: 80px;
+}
+
+.appTitle h1 {
+  font-size: 2em;
+  line-height: 40px;
+}
+
+.appIntro {
+  font-size: large;
+}
+
+@keyframes appLogoSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
